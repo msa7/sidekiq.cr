@@ -8,7 +8,7 @@ hash = File.open(filename, "rb") do |file|
   Marshal.load(file.read)
 end
 
-r = Redis.new
+r = Redis.new("redis://redis:6379/dev_34")
 hash.each_pair do |key, value|
   r.restore(key, 1000, value)
 end

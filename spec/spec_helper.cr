@@ -1,6 +1,9 @@
 require "spec"
 require "../src/sidekiq"
 
+ENV["REDIS_PROVIDER"] = "REDIS_URL"       # for sidekiq
+ENV["REDIS_URL"] = "redis://redis:6379/0" # for sidekiq
+
 POOL = Sidekiq::Pool.new(1)
 
 class MockContext < Sidekiq::Context
